@@ -16,4 +16,4 @@ colnames(doviz) = c('tarih','doviz')
 kko = getDataSeries('TP.KKO2.IS.TOP' , CBRTKey = '5rUjrDHw0I', freq = 5, startDate="01-01-2000")
 colnames(kko) = c('tarih','kko')
 
-
+kko

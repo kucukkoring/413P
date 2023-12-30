@@ -7,3 +7,4 @@ if (!require(plotly)) install.packages('plotly')
 
 fig <- plot_ly(doviz, x = ~tarih, y = ~doviz, type = 'scatter', mode = 'lines')
 
+fig2 <- plot_ly(kko, x = ~tarih, y = ~kko, type = 'scatter', mode = 'lines')

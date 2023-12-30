@@ -1,5 +1,5 @@
 ## Required R file
-source('evds.R')
+source('https://raw.githubusercontent.com/kucukkoring/413P/main/docs/evds.R')
 
 ## Required Packages
 if (!require(plotly)) install.packages('plotly')

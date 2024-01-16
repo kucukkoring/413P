@@ -8,5 +8,3 @@ library(plotly)
 
 graph_2 <- plot_ly(kfe, x= ~Tarih, y = ~Ankara, type = 'scatter', mode = 'lines')
 graph_2
-graph_1 <- plot_ly(kfe, x = ~Tarih, y = ~Edirne_Kırklarelİ_Tekirdağ, type = 'scatter' , mode = 'lines')
-graph_1

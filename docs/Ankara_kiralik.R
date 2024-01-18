@@ -1,70 +1,80 @@
-#Anakra Kiralık
-#Istanbul-ankara haftalık Kiralık
+##Ankara Kiralık
 
-# Gerekli kütüphaneleri yükleyelim
+# Load necessary libraries
 library(rvest)
-library(stringr)
-library(purrr)
-library(data.table)
-
-# İlan verilerini çeken fonksiyon
-get_ilan_verisi <- function(url) {
-  page <- read_html(url)
-  loc <- gsub("https://www.hepsiemlak.com/|\\W", "", url)
-  ilan_etiketleri <- html_nodes(page, ".list-view-line")
-  ilan_verisi <- data.table(
-    Baslik = html_text(html_nodes(ilan_etiketleri, "h3")),
-    Oda_Sayisi = html_text(html_nodes(ilan_etiketleri, ".houseRoomCount")),
-    Metrekare = html_text(html_nodes(ilan_etiketleri, ".squareMeter")),
-    Bina_Yasi = html_text(html_nodes(ilan_etiketleri, ".buildingAge")),
-    Fiyat = html_text(html_nodes(ilan_etiketleri, ".list-view-price")),
-    Konum = loc
-  )
-  return(ilan_verisi)
-}
-
-# İlan sayfalarını çeken fonksiyon
-get_ilan_sayfalari <- function(base_url) {
-  page <- read_html(base_url)
-  # Sayfa sayısını bul
-  sayfa_sayisi <- as.numeric(html_text(html_nodes(page, ".page-info")))
-  
-  # Tüm sayfaları dolaş
-  urls <- map_chr(1:6, function(page_num) {
-    paste0(base_url, "?page=", page_num)
-  })
-  
-  # Her bir sayfa için ilan verilerini çek
-  ilanlar <- map_df(urls, function(url) {
-    Sys.sleep(3)  # 5 saniye bekleme
-    get_ilan_verisi(url)
-  })
-  
-  return(ilanlar)
-}
-
-
-# İşlem yapılacak URL'leri tanımla
-url_listesi <- "https://www.hepsiemlak.com/ankara-kiralik?p37=120403"
-
-# Tüm URL'leri ve sayfaları döngü içinde işle
-tum_ilanlar <- map_df(url_listesi, get_ilan_sayfalari)
-
-library(dplyr)
-
-
-# Fiyat ve Metrekare filtreleme
-tum_ilanlar_filitreli <- tum_ilanlar %>%
-  filter(
-    between(as.numeric(str_replace_all(Fiyat, "\\D", "")), 500, 100000),
-    between(as.numeric(str_replace_all(Metrekare, "\\D", "")), 30, 450)
-  ) 
-
-
 library(httr)
+library(xml2)
+library(writexl)
 
-headers <- c(
-  "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
-)
+english_provinces <- c("ankara")
 
-response <- httr::GET(url, httr::add_headers(.headers=headers))
+# User agent to mimic a browser request
+user_agent <- "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7"
+
+# Initialize data storage
+data <- data.frame()
+
+# Loop through the provinces
+for (i in english_provinces) {
+  try({
+    Sys.sleep(5)
+    
+    # Construct the URL
+    url <- paste0("https://www.hepsiemlak.com/en/", i, "-kiralik")
+    
+    # Perform the HTTP request
+    page <- GET(url, user_agent(user_agent))
+    content <- read_html(page)
+    
+    # Find the last page number
+    scroller <- html_nodes(content, "ul.he-pagination__links")
+    last_page <- html_nodes(scroller, "li:last-child a") %>% html_attr("href")
+    last_page <- as.numeric(strsplit(last_page, "=")[[1]][2])
+    pages <- 2:last_page
+    
+    # Extract listings
+    list_view <- html_nodes(content, "ul.list-items-container")
+    list_items <- html_nodes(list_view, "li")
+    
+    for (q in 1:length(list_items)) {
+      try({
+        price <- html_nodes(list_items[q], "span.list-view-price") %>% html_text() %>% trimws()
+        size <- html_nodes(list_items[q], "span.celly.squareMeter.list-view-size") %>% html_text() %>% trimws()
+        rooms <- html_nodes(list_items[q], "span.celly.houseRoomCount") %>% html_text() %>% trimws()
+        
+        data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i))
+      }, silent = TRUE)
+    }
+    
+    # Print status
+    print(paste(i, "page 1 is done >>>", last_page))
+    
+    # Loop through additional pages
+    for (f in pages) {
+      print(paste(i, "page", f, "is done of", last_page))
+      Sys.sleep(5)
+      
+      url <- paste0("https://www.hepsiemlak.com/en/", i, "-kiralik?page=", f)
+      page <- GET(url, user_agent(user_agent))
+      content <- read_html(page)
+      list_view <- html_nodes(content, "ul.list-items-container")
+      list_items <- html_nodes(list_view, "li")
+      
+      for (j in 1:length(list_items)) {
+        try({
+          price <- html_nodes(list_items[j], "span.list-view-price") %>% html_text() %>% trimws()
+          size <- html_nodes(list_items[j], "span.celly.squareMeter.list-view-size") %>% html_text() %>% trimws()
+          rooms <- html_nodes(list_items[j], "span.celly.houseRoomCount") %>% html_text() %>% trimws()
+          
+          data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i))
+        }, silent = TRUE)
+      }
+    }
+    
+    print(paste(i, "is done"))
+  }, silent = TRUE)
+}
+
+# Output the data
+write_xlsx(data, "Ankara Kiralık.xlsx")
+

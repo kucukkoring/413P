@@ -1,0 +1,92 @@
+library(sf)
+library("rnaturalearth")
+library("rnaturalearthdata")
+library(ggplot2)
+library(data.table)
+library(leaflet)
+
+data$kira_fiyati <- c(30627)
+
+
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.0904, lat = 40.8764, popup = "Adalar")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.7214, lat = 41.1840, popup = "Arnavutköy")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1064, lat = 40.9849, popup = "Ataşehir")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.7178, lat = 40.9801, popup = "Avcılar")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8530, lat = 41.0330, popup = "Bağcılar")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8774, lat = 41.0096, popup = "Bahçelievler")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8149, lat = 40.9767, popup = "Bakırköy")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8353, lat = 41.0810, popup = "Başakşehir")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8722, lat = 41.0354, popup = "Bayrampaşa")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.0077, lat = 41.0428, popup = "Beşiktaş")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1014, lat = 41.1231, popup = "Beykoz")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.6412, lat = 41.0011, popup = "Beylikdüzü")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9760, lat = 41.0274, popup = "Beyoğlu")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.6633, lat = 41.0150, popup = "Büyükçekmece")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.6341, lat = 41.1864, popup = "Çatalca")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.3486, lat = 41.1408, popup = "Çekmeköy")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1500, lat = 41.0285, popup = "Esenler")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9065, lat = 41.0795, popup = "Esenyurt")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.7013, lat = 41.0335, popup = "Eyüp")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8764, lat = 41.0575, popup = "Fatih")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9655, lat = 41.0301, popup = "Gaziosmanpaşa")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9120, lat = 41.1060, popup = "Güngören")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.8764, lat = 41.0853, popup = "Kadıköy")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.0810, lat = 41.0229, popup = "Kağıthane")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.0235, lat = 40.9870, popup = "Kartal")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.0247, lat = 40.9911, popup = "Küçükçekmece")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1595, lat = 40.9095, popup = "Maltepe")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1420, lat = 40.8900, popup = "Pendik")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1658, lat = 40.9613, popup = "Sancaktepe")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.3797, lat = 40.8485, popup = "Sarıyer")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1532, lat = 40.8930, popup = "Silivri")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.7619, lat = 40.9881, popup = "Sultanbeyli")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.3225, lat = 41.1063, popup = "Sultangazi")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.2310, lat = 41.1755, popup = "Şile")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.7713, lat = 41.0247, popup = "Şişli")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9852, lat = 41.0082, popup = "Tuzla")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.3747, lat = 40.8126, popup = "Ümraniye")
+turkiye <- turkiye %>%
+  addMarkers(lng = 29.1016, lat = 41.0178, popup = "Üsküdar")
+turkiye <- turkiye %>%
+  addMarkers(lng = 28.9983, lat = 41.0704, popup = "Zeytinburnu")
+turkiye <- turkiye %>%
+  addMarkers(lng = 32.8541, lat = 39.9334, popup = "Ankara") %>%
+  addMarkers(lng = 32.8541, lat = 39.9334, popup = "Ankara - Ortalama Kiralık Ev Fiyatı: 30627 TL")
+

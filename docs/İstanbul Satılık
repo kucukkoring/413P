@@ -7,7 +7,6 @@ library(writexl)
 istanbul_ilceler = c("adalar", "arnavutkoy", "atasehir", "avcilar", "bagcilar", "bahcelievler", "bakirkoy", "basaksehir", "bayrampasa", "besiktas", "beykoz", "beylikduzu", "beyoglu", "buyukcekmece", "catalca", "cekmekoy", "esenler", "esenyurt", "eyup", "fatih", "gaziosmanpasa", "gungoren", "kadikoy", "kagithane", "kartal", "kucukcekmece", "maltepe", "pendik", "sancaktepe", "sariyer","silivri", "sultanbeyli", "sultangazi", "sisli", "tuzla", "umraniye", "uskudar", "zeytinburnu")
 
 
-
 # User agent to mimic a browser request
 user_agent <- "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7"
 

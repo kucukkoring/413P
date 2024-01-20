@@ -28,37 +28,3 @@ graph2 <- ggplotly(
 )
 graph2
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Plotting the scatter plot for İstanbul with adjusted x-axis
-graph_1 <- plot_ly(kfe, x = ~Tarih, y = ~İstanbul, type = 'scatter', mode = 'lines', name = 'İstanbul') %>%
-  layout(
-    xaxis = list(
-      tickvals = seq(min(kfe$Tarih), max(kfe$Tarih), by = "1 year"),  # Set ticks for each year
-      tickmode = 'array',
-      range = c(min(kfe$Tarih), max(kfe$Tarih))  # Set the x-axis range to cover the entire dataset
-    )
-  )
-
-# Adding a second trace for Ankara
-graph_1 <- graph_1 %>% add_trace(x = ~Tarih, y = ~Ankara, type = 'scatter', mode = 'lines', name = 'Ankara')
-
-# Show the modified scatter plot with both İstanbul and Ankara
-graph_1
-
-## konut faiz graph
-
-
-graph_31 <- plot_ly(konut_faiz, x = ~Tarih, y = ~KFO, type = 'scatter', mode = 'lines')
-graph_31

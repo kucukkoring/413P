@@ -6,6 +6,8 @@ library(httr)
 library(xml2)
 library(writexl)
 
+rm(list = ls())
+
 english_provinces <- c("ankara")
 
 # User agent to mimic a browser request
@@ -41,8 +43,9 @@ for (i in english_provinces) {
         price <- html_nodes(list_items[q], "span.list-view-price") %>% html_text() %>% trimws()
         size <- html_nodes(list_items[q], "span.celly.squareMeter.list-view-size") %>% html_text() %>% trimws()
         rooms <- html_nodes(list_items[q], "span.celly.houseRoomCount") %>% html_text() %>% trimws()
+        date <- html_nodes(list_items[q], "span.list-view-date") %>% html_text() %>% trimws()
         
-        data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i))
+        data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i, Date = date))
       }, silent = TRUE)
     }
     
@@ -65,8 +68,9 @@ for (i in english_provinces) {
           price <- html_nodes(list_items[j], "span.list-view-price") %>% html_text() %>% trimws()
           size <- html_nodes(list_items[j], "span.celly.squareMeter.list-view-size") %>% html_text() %>% trimws()
           rooms <- html_nodes(list_items[j], "span.celly.houseRoomCount") %>% html_text() %>% trimws()
+          date <- html_nodes(list_items[q], "span.list-view-date") %>% html_text() %>% trimws()
           
-          data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i))
+          data <- rbind(data, data.frame(Price = price, Size = size, Rooms = rooms, Province = i, Date = date))
         }, silent = TRUE)
       }
     }
@@ -76,5 +80,4 @@ for (i in english_provinces) {
 }
 
 # Output the data
-write_xlsx(data, "Ankara Kiralık.xlsx")
 

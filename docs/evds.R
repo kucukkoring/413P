@@ -24,7 +24,7 @@ setnames(konut_faiz, "time", "Date")
 setnames(konut_faiz, "TP.KTF12", "Housing_Interest_Rate")
 konut_satis_ist1 <- getDataSeries("TP.AKONUTSAT3.T40", CBRTKey = '5rUjrDHw0I', freq = 5, startDate="01-01-2013") 
 setnames(konut_satis_ist1, "time", "Date")
-setnames(konut_satis_ist1, "TP.AKONUTSAT3.T40", "Istanbul_First_Hand-House_Sales")
+setnames(konut_satis_ist1, "TP.AKONUTSAT3.T40", "Istanbul_First_Hand_House_Sales")
 konut_satis_ist2 <- getDataSeries("TP.AKONUTSAT4.T40", CBRTKey = '5rUjrDHw0I', freq = 5, startDate="01-01-2013")
 setnames(konut_satis_ist2, "time", "Date")
 setnames(konut_satis_ist2, "TP.AKONUTSAT4.T40", "Istanbul_Second_Hand_House_Sales")
@@ -42,7 +42,16 @@ merged_satis <- merge(merged_ank_satis, merged_ist_satis, by = "Date", all = TRU
 merged_satis_kfe <- merge(merged_kfe, merged_satis, by = "Date", all = TRUE)
 merged <- merge(merged_satis_kfe, konut_faiz, by = "Date", all = TRUE)
 
-model_1 <- lm(Ankara_First_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged )
+model_1 <- lm(Ankara_First_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
 summary(model_1)
+
+model2 <- lm(Ankara_Second_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
+summary(model2)
+
+model3 <- lm(Istanbul_First_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
+summary(model3)
+
+model4 <- lm(Istanbul_Second_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
+summary(model4)
 
 

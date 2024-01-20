@@ -45,3 +45,4 @@ merged <- merge(merged_satis_kfe, konut_faiz, by = "Date", all = TRUE)
 model_1 <- lm(Ankara_First_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged )
 summary(model_1)
 
+

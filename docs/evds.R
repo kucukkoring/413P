@@ -12,6 +12,9 @@ library(dplyr)
 if (!require(tidyr)) install.packages("tidyr")
 library(tidyr)
 
+if (!require(stargazer)) install.packages("stargazer")
+library(stargazer)
+
 ## Veri çek
 kfe_ist <- getDataSeries(c('TP.HKFE02'), CBRTKey = '5rUjrDHw0I', freq = 3, startDate="01-01-2013")
 kfe_ank <- getDataSeries(c('TP.HKFE03'), CBRTKey = '5rUjrDHw0I', freq = 3, startDate="01-01-2013")
@@ -45,13 +48,15 @@ merged <- merge(merged_satis_kfe, konut_faiz, by = "Date", all = TRUE)
 model_1 <- lm(Ankara_First_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
 summary(model_1)
 
-model2 <- lm(Ankara_Second_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
-summary(model2)
+model_2 <- lm(Ankara_Second_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
+summary(model_2)
 
-model3 <- lm(Istanbul_First_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
-summary(model3)
+model_3 <- lm(Istanbul_First_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
+summary(model_3)
 
-model4 <- lm(Istanbul_Second_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
-summary(model4)
+model_4 <- lm(Istanbul_Second_Hand_House_Sales ~ Housing_Interest_Rate + Istanbul_House_Price_Index, data=merged)
+summary(model_4)
+
+stargazer(model_1, model_2, type="html")
 
 

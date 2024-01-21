@@ -71,3 +71,5 @@ graph6 <- ggplotly(
           panel.grid.minor.x = element_blank())
 )
 graph6
+
+stargazer(model_1, model_2, type = "html")

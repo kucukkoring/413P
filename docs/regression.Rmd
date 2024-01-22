@@ -1,0 +1,84 @@
+---
+title: "Regression"
+output:
+  html_document:
+    css: main2.css
+    toc: true
+    toc_float: true
+    self_contained: true
+---
+
+<style>
+  p {
+    font-size: 14px; /* 12 */
+  }
+</style>
+The Turkish housing market has undergone significant changes, as reported by the Central Bank of the Republic of Turkey (CBRT). March data revealed a 5.4% monthly and 132.76% annual surge in housing prices, with Istanbul's average 120-square-meter residence exceeding 4 million Turkish Liras. December 2022 data showed a remarkable 167.8% yearly increase, emphasizing substantial shifts. Noteworthy changes post-February earthquakes prompted an analysis of rental and sale prices in Ankara. Using data from a major real estate website, the study explored correlations with housing indices and interest rates. An innovative regression model, leveraging cumulative real estate data, forecasts future trends and prevents market speculation, benefiting consumers and sellers. This approach provides a robust tool for stakeholders to make informed decisions, with plans for further system enhancements to address ongoing housing market changes.
+
+## Regression
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+## Required R file
+source('https://raw.githubusercontent.com/kucukkoring/413P/main/docs/graph.R')
+```
+
+### Ankara First Hand House Sales
+
+In the realm of econometrics, our investigation delves into the dynamics of Ankara's first-hand house sales (AFHHS) as influenced by two pivotal predictor variables: "Housing Interest Rate" (HIR) and "Ankara House Price Index" (AHPI). The estimated regression coefficients reveal key insights into the anticipated impact of economic shocks on AFHHS.
+
+The coefficients are as follows: B₀ = 5092, B₁ = -61.21, and B₂ = -1.8. Interpreting these coefficients illuminates the expected changes in AFHHS in response to a unit increase in each predictor variable. Specifically, in the face of an economic shock leading to a one-unit escalation in Housing Interest Rate (HIR), AFHHS is anticipated to decrease by 61 units. Similarly, a one-unit shock in the Ankara House Price Index (AHPI) is associated with a projected decrease of 1.8 units in AFHHS. Notably, the disparate magnitudes of these coefficients underscore the distinct susceptibility of Ankara's housing market to fluctuations in interest rates compared to price indices.
+
+The coefficient of determination (R-squared), a critical metric gauging the explanatory power of the model, is calculated at 0.3. While this value does not approach the conventional benchmark of 0.8, indicative of a robust model, it is pertinent to acknowledge the limitations stemming from the inherent challenge of incorporating "ceteris paribus" conditions within our analytical framework. The R-squared value, albeit not in the optimal range, signifies the extent to which the chosen variables elucidate variations in AFHHS. Owing to the complex interplay of factors and the inherent difficulty in maintaining all else constant, achieving a higher R-squared value within the given context remains a challenging endeavor.
+
+```{r, echo=FALSE}
+
+model_1 <- lm(Ankara_First_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
+summary(model_1)
+
+```
+
+
+### Ankara Second Hand House Sales
+ 
+In the present analysis, we turn our attention to scrutinizing the dynamics of Ankara's second-hand house sales (ASHHS), employing analogous independent variables as in the prior examination. Specifically, the predictors utilized are "Housing Interest Rate" (HIR) and "Ankara House Price Index" (AHPI). The estimated regression coefficients derived from this investigation are detailed as follows: B₀ = 9313.779, B₁ = -138.229, and B₂ = 2.907.
+
+Interpreting these coefficients elucidates the anticipated impact of economic shocks on ASHHS. Notably, in response to an economic shock leading to a one-unit escalation in Housing Interest Rate (HIR), ASHHS is projected to decrease by 138 units. Conversely, a one-unit shock in the Ankara House Price Index (AHPI) is associated with an expected increase of 2.9 units in ASHHS. A notable departure from the observed impact on first-hand house sales, this result reflects a positive effect of the price index on the second-hand market. This outcome stands in apparent contradiction to conventional economic theories, reminiscent of the counterintuitive notion observed historically in the Irish Potato market—wherein increased prices coincide with heightened demand.
+
+We posit that this unexpected finding may be attributed to the interdependence of the first-hand and second-hand markets. Specifically, a decline in first-hand house sales could potentially trigger an inverse effect, stimulating demand in the second-hand market. This intricate relationship underscores the intricate dynamics at play within Ankara's real estate landscape, prompting further inquiry and exploration into the nuanced interplay between market segments.
+
+
+```{r, echo=FALSE}
+
+model_2 <- lm(Ankara_Second_Hand_House_Sales ~ Housing_Interest_Rate + Ankara_House_Price_Index, data=merged)
+summary(model_2)
+
+```
+
+### Graphs
+
+```{r, echo=FALSE}
+
+graph1
+
+```
+
+```{r, echo=FALSE}
+
+graph2
+
+```
+
+```{r, echo=FALSE}
+
+graph3
+
+```
+
+```{r, echo=FALSE}
+
+graph4
+
+```
+
+##  **[Back to main menu](index.html)**

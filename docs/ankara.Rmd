@@ -1,0 +1,477 @@
+---
+title: "Ankara"
+output:
+  html_document:
+    css: main2.css
+    toc: true
+    toc_float: true
+    self_contained: true
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+library(plotly)
+library(readr)
+library(stringr)
+raw_k <- read_csv("Ankara_KİRALIK.csv")
+raw_k$Price <- as.numeric(gsub("\\.", "", str_extract(raw_k$Price, "^[^\n]+")))
+raw_k$Size <- as.numeric(str_extract(raw_k$Size, "\\d+"))
+raw_s <- read_csv("Ankara_Satılık.csv")
+raw_s$Price <- as.numeric(gsub("\\.", "", str_extract(raw_s$Price, "^[^\n]+")))
+raw_s$Size <- as.numeric(str_extract(raw_s$Size, "\\d+"))
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Districts
+
+### Altındağ {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'altindag'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'altindag'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+### Gölbaşı {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'ankara-golbasi'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'ankara-golbasi'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+### Çankaya {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'cankaya'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'cankaya'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Çubuk {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'cubuk'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'cubuk'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Etimesgut {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'etimesgut'
+df_etimesgut <- raw_k[raw_k$Province == ilce, ]
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'etimesgut'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Keçiören {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'kecioren'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'kecioren'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Mamak {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'mamak'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'mamak'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Polatlı {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'polatli'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'polatli'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Pursaklar {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'pursaklar'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'pursaklar'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Sincan {.tabset .tabset-pills}
+
+#### Rental 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'sincan'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'sincan'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+### Yenimahalle {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'yenimahalle'
+df <- raw_k[raw_k$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig <- fig %>%
+  add_trace(
+    marker = list(color='green'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig
+```
+
+#### Sale
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'yenimahalle'
+df1 <- raw_s[raw_s$Province == ilce, ]
+df1 <- df1[df1$Price >= 500000 & df1$Price <= 6000000, ]  # Fix the typo here
+df1 <- df1[df1$Size >= 30 & df1$Size <= 1500, ]
+fig1 <- plot_ly(data = df1, x = ~Size, y = ~Price)
+fig1 <- fig1 %>% layout(xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+
+fig1 <- fig1 %>%
+  add_trace(
+    marker = list(color='red'),
+    hoverinfo = 'y',
+    showlegend = F
+  ) 
+fig1
+```
+
+
+##  **[Back to main menu](index.html)**

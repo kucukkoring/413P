@@ -1,0 +1,36 @@
+---
+title: "About Us"
+output:
+  html_document:
+    css: main2.css
+    toc: true
+    toc_float: true
+    self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This project is made by
+
+**-Elyesa Samet Türk**
+
+He is a senior year student at METU Economics. Right now, he is working as customer experience intern at HepsiBurada.
+
+**-İbrahimcan Bulak**
+
+He is a senior year student at METU. He has done his internship at The Economic Policy Research Foundation of Turkey (TEPAV), and also researcher at TUBITAK Star Project. 
+
+**-Yaren Küçükkör**
+
+She is a senior year student at METU Economics. She is an intern at The Economic Policy Research Foundation of Turkey (TEPAV).
+
+
+<p align="center">
+  <img src="C:/Users/LENOVO/Desktop/413fotoğraf.jpg" alt="This photo was taken in the Economics Society room on one of the nights when we were working on this project." width="80%" height="80%">
+</p>
+
+We were making this project at METU Economics Society's room at midnight, and we look really exhausted in this photo.
+
+##  **[Back to main menu](index.html)**

@@ -1,0 +1,55 @@
+---
+title: "İstanbul"
+output:
+  html_document:
+    css: main2.css
+    toc: true
+    toc_float: true
+    self_contained: true
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+library(plotly)
+library(readr)
+library(stringr)
+province <- "Istanbul"
+raw <- read_csv(paste0(province, "_Kiralik.csv"))
+```
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Districts
+
+### Adalar {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'adalar'
+df <- raw[raw$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(title = paste0(str_to_title(ilce), " rental prices and house sizes"), xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+fig
+```
+
+#### Sale
+
+### Arnavutkoy {.tabset .tabset-pills}
+
+#### Rental
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.width=8, fig.height=6}
+ilce <- 'arnavutkoy'
+df <- raw[raw$Province == ilce, ]
+df <- df[df$Price>= 500 & df$Price <= 300000,]
+df <- df[df$Size>= 30 & df$Size <= 1500,]
+fig <- plot_ly(data = df, x = ~Size, y = ~Price)
+fig <- fig %>% layout(title = paste0(str_to_title(ilce), " rental prices and house sizes"), xaxis = list(title = 'Size, m²'), yaxis = list(title = 'Price, TRY'))
+fig
+```
+
+#### Sale
+
+##  **[Back to main menu](menu.html)**
